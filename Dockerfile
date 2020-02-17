@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 # Copy all files!
 RUN mkdir -p /home/SpeechNode/
-COPY . /home/SpeechNode/*
+COPY . /home/SpeechNode/
 
 # Web HTTP(s) & Socket Site-to-Site Ports
 EXPOSE 8000
@@ -21,3 +21,6 @@ RUN apt-get update && \
 
 # Install python packages
 RUN pip3 install -r /home/SpeechNode/requirements.txt --no-cache-dir
+
+WORKDIR /home/SpeechNode/
+CMD [ "python3", "/home/SpeechNode/main.py" ]
