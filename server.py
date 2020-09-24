@@ -2,7 +2,7 @@ from threading import Thread
 import http.server
 import socketserver
 from functools import partial
-
+import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
@@ -39,12 +39,12 @@ class S(BaseHTTPRequestHandler):
             content_length = int(self.headers['Content-Length'])
             # <--- Gets the data itself
             post_data = self.rfile.read(content_length)
-            # print(post_data)
+            
             # decode incoming data // see if password is correct here!
             try:
 
                 data = json.loads(post_data.decode('utf-8'))
-                #print("json", data)
+                
                 if data['api_crypt']:
                     if data['api_crypt'] == self.CRYPT:
 
@@ -54,14 +54,16 @@ class S(BaseHTTPRequestHandler):
                                 self.client_address[0]) + " PORT " + str(self.client_address[1]))
                             self.connection_list.append(self.client_address[0])
 
+                        if data["api_text"]:
+                            self.speaker.say(data["api_text"])
+
                         if data["api_rate"]:
                             self.speaker.setSpeed(float(data["api_rate"]))
-                        elif data["api_text"]:
-                            self.speaker.say(data["api_text"])
-                        elif data["api_volume"]:
+                        
+                        if data["api_volume"]:
                             self.speaker.setVolume(float(data["api_volume"]))
-            except Exception:
-                pass
+            except Exception as e:
+                print("SERVER RECEIVE ERROR: ",str(e))
         self._set_response()
 
 

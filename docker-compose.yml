@@ -1,0 +1,10 @@
+version : '3'
+
+services:
+  server:
+    build: .
+    container_name: Text-To-Speech
+    ports:
+    - 8000:8000
+   # devices: 
+   # - /dev/snd:/dev/snd # ubuntu

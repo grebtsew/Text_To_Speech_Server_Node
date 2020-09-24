@@ -1,5 +1,9 @@
 # Text To Speech Server Node
- A speaking server node that recieves POST JSON requests and reads them through speakers. A python application run on Docker.
+![license](https://img.shields.io/github/license/grebtsew/Text_To_Speech_Server_Node)
+![size](https://img.shields.io/github/repo-size/grebtsew/Text_To_Speech_Server_Node)
+![commit](https://img.shields.io/github/last-commit/grebtsew/Text_To_Speech_Server_Node)
+
+ A speaking server node that receives POST JSON requests and reads them through speakers. A python application run on Docker.
 
 # Install local
 Make sure python3 is installed on your device. 
@@ -21,6 +25,9 @@ This will only work on Linux. Another container has to be built for windows.
 For now I would recommend just running the python code on your device by installing
 the requirements and run implementation.
 ```
+# One liner (make sure to add sound device!)
+docker-compose up
+
 # Build image
 docker build . --tag=speak:1.0
 

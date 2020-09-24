@@ -2,13 +2,14 @@
 # importing the requests library
 import requests
 import time
+import json
 
 # defining the api-endpoint
 API_ENDPOINT = "http://localhost:8000"
 
 CRYPT = "password-1"
 
-TEXT_TO_READ = "This example explains how to paste your source_code to pastebin.com by sending POST request to the PASTEBIN API."
+TEXT_TO_READ = "This example explains how to send data to the text to speech server node, feel free to play around with it! Have a good day!."
 
 # data to be sent to api
 data = {
@@ -22,7 +23,7 @@ while True:
     print("Sending our POST request to server ...")
     print(API_ENDPOINT, data)
     # sending post request and saving response as response object
-    r = requests.post(url = API_ENDPOINT, data = data)
+    r = requests.post(url = API_ENDPOINT, data = json.dumps(data))
 
     # extracting response text
     pastebin_url = r.text
