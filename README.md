@@ -20,6 +20,13 @@ crontab -e
 @reboot path/to/repo/main.py
 ```
 
+# Install locally
+Install locally by running
+```
+pip install -r requirements.txt
+```
+See how to Run implementation below.
+
 # Install with Docker
 This will only work on Linux. Another container has to be built for windows.
 For now I would recommend just running the python code on your device by installing
