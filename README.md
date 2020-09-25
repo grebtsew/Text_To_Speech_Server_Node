@@ -55,7 +55,7 @@ See test_client.py
 data = {
         'api_rate':150, # set speed of voice
         'api_volume':0.7, # set volume
-        'api_text':"TEXT_TO_READ", # actual text
-        'api_crypt':CRYPT # crypt key
+        'api_text':"TEXT_TO_READ", # actual text REQUIRED
+        'api_crypt':CRYPT # crypt key REQUIRED
         } 
 ```
