@@ -62,6 +62,7 @@ class speaker():
             self.queue.put(s)
 
     def start(self):
+        
         self.run()
 
     def onWord(self, name, location, length):

@@ -1,3 +1,4 @@
 requests>=2.22.0
 pyttsx3>=2.81
 pyfiglet>=0.8
+gTTS>=2.1.1
