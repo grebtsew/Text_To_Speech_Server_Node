@@ -78,6 +78,12 @@ Server logs are stored in local `.log` file.
 
 # Testing
 
+[![Build Docker Container](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/build_docker.yml/badge.svg)](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/build_docker.yml)
+[![Check Python Format](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/py_format.yml/badge.svg)](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/py_format.yml)
+[![Pylint Check](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/py_lint.yml/badge.svg)](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/py_lint.yml)
+[![Python Test and Coverage](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/py_coverage.yml/badge.svg)](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/py_coverage.yml)
+[![Run Pytest](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/py_unit_test.yml/badge.svg)](https://github.com/grebtsew/Text_To_Speech_Server_Node/actions/workflows/py_unit_test.yml)
+
 This repository does not contain mandatory ci/cd pipelien that must pass in order for merge requests to pass. For manual testing see `./tests/manual/*`.
 
 # License
