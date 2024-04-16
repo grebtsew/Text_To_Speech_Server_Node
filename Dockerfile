@@ -1,8 +1,11 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
+
+LABEL maintainer="@ Grebtsew 2024"
+
+WORKDIR /home/app/
 
 # Copy all files!
-RUN mkdir -p /home/SpeechNode/
-COPY . /home/SpeechNode/
+RUN mkdir -p /home/app/
 
 # Web HTTP(s) & Socket Site-to-Site Ports
 EXPOSE 8000
@@ -19,9 +22,11 @@ RUN apt-get update && \
     apt-get -y autoremove && \
     rm -rf /var/lib/apt/lists/*
 
-
 # Install python packages
-RUN pip3 install -r /home/SpeechNode/requirements.txt --no-cache-dir
+COPY ./requirements.txt /requirements.txt
+RUN pip3 install -r /requirements.txt 
 
-WORKDIR /home/SpeechNode/
-CMD [ "python3", "/home/SpeechNode/main.py" ]
+# Copy project
+COPY . /home/app/
+
+CMD [ "python3", "/home/app/main.py" ]

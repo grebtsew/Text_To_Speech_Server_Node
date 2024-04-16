@@ -1,0 +1,22 @@
+----------------------------------
+Version: 0.0.1 
+Date: 24-04-16
+Author: Grebtsew
+
+Updated versions, wrote tests, and performed major fixes.
+Creating first release here, since the system works "well enought"!
+
+----------------------------------
+Version: <version>
+Date: <date>
+Author: <who?>
+
+<About release>
+
+Features:
+- <add features here>
+
+Bugs:
+- <add bugs here>
+
+----------------------------------

@@ -1,0 +1,25 @@
+name: Build Docker Container
+
+#
+# The purpose of this CI is to make sure docker-container always can build.
+#
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker container
+        run: |
+          docker build -t tts-server:latest .

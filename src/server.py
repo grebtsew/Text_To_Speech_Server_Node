@@ -1,13 +1,12 @@
 from threading import Thread
-import http.server
-import socketserver
 from functools import partial
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from speaker import logger
 
 
 class S(BaseHTTPRequestHandler):
-    CRYPT = "password-1"
+    PASSWORD = "password-1"
     connection_list = []
 
     def __init__(self, speaker, *args, **kwargs):
@@ -16,12 +15,11 @@ class S(BaseHTTPRequestHandler):
 
     def _set_response(self):
         self.send_response(200, "ok")
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods',
-                         'POST, OPTIONS, HEAD, GET')
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS, HEAD, GET")
         self.send_header("Access-Control-Allow-Headers", "X-Requested-With")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
-        self.send_header('Content-type', 'text/html')
+        self.send_header("Content-type", "text/html")
         self.end_headers()
 
     def do_HEAD(self):
@@ -33,37 +31,35 @@ class S(BaseHTTPRequestHandler):
     def do_POST(self):
         # print(self.client_address,self.headers)
 
-        if self.headers['Content-Length']:
+        if self.headers["Content-Length"]:
 
             # <--- Gets the size of data
-            content_length = int(self.headers['Content-Length'])
+            content_length = int(self.headers["Content-Length"])
             # <--- Gets the data itself
             post_data = self.rfile.read(content_length)
-            
+
             # decode incoming data // see if password is correct here!
             try:
 
-                data = json.loads(post_data.decode('utf-8'))
-                
-                if data['api_crypt']:
-                    if data['api_crypt'] == self.CRYPT:
+                data = json.loads(post_data.decode("utf-8"))
+
+                if data["password"]:
+                    if data["password"] == self.PASSWORD:
 
                         # detemine source data
                         if not self.client_address[0] in self.connection_list:
-                            self.speaker.say("New Server Connection From Address " + str(
-                                self.client_address[0]) + " PORT " + str(self.client_address[1]))
+                            self.speaker.say(
+                                "New Server Connection From Address "
+                                + str(self.client_address[0])
+                                + " PORT "
+                                + str(self.client_address[1])
+                            )
                             self.connection_list.append(self.client_address[0])
 
-                        if data["api_text"]:
-                            self.speaker.say(data["api_text"])
+                        self.speaker.queue.put(data)
 
-                        if data["api_rate"]:
-                            self.speaker.setSpeed(float(data["api_rate"]))
-                        
-                        if data["api_volume"]:
-                            self.speaker.setVolume(float(data["api_volume"]))
             except Exception as e:
-                print("SERVER RECEIVE ERROR: ",str(e))
+                logger.error("SERVER ERROR: ", str(e))
         self._set_response()
 
 
@@ -76,7 +72,7 @@ class server(Thread):
         self.speaker = speaker
 
     def run(self):
-        server_address = ('localhost', self.PORT)
+        server_address = ("localhost", self.PORT)
         httpd = HTTPServer(server_address, partial(S, self.speaker))
         try:
             httpd.serve_forever()

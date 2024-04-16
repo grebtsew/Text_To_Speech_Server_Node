@@ -1,4 +1,10 @@
-requests>=2.22.0
-pyttsx3>=2.81
-pyfiglet>=0.8
-gTTS>=2.1.1
+# App
+requests==2.31.0
+pyttsx3==2.90
+pyfiglet==1.0.2
+gTTS==2.5.1
+
+# ci/cd
+pytest==8.1.1
+black==24.4.0
+pylint==3.1.0

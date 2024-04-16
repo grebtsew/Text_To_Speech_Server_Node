@@ -1,0 +1,32 @@
+name: Pylint Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pylint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install pylint
+
+      - name: Run Pylint
+        run: |
+          pylint ./src > pylint_report.txt || true
+          score=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' pylint_report.txt)
+          echo "Pylint score: $score"
+        shell: bash

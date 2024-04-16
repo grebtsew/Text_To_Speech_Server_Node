@@ -1,10 +1,11 @@
-from speaker import speaker
+from speaker import speaker, logger
 from console import console
 from server import server
 import pyfiglet
 
-fig = pyfiglet.Figlet(font='standard')
-print(fig.renderText('Text to Speech Server Node'))
+fig = pyfiglet.Figlet(font="standard")
+logger.info(fig.renderText("Text to Speech Server Node"))
+
 
 def main():
     speaker_thread = speaker()
@@ -25,5 +26,6 @@ def main():
     # Start speaking thread
     speaker_thread.start()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

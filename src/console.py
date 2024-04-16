@@ -1,5 +1,6 @@
 from threading import Thread
 
+
 class console(Thread):
 
     def __init__(self, speaker):

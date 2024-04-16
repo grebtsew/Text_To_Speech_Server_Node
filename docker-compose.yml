@@ -1,13 +1,16 @@
-version : '3'
+version : '3.8'
+
+#
+# docker-compose up -d
+#
 
 services:
-  server:
+  tts-api-server:
     build: .
-    container_name: Text-To-Speech
+    container_name: tts-api-server
     stdin_open: true
     tty: true
-    network_mode: host
-    #ports:
-    #- 8000:8000
+    ports:
+    - 8000:8000
     devices: 
-    - /dev/snd:/dev/snd # ubuntu
+    - /dev/snd:/dev/snd # ubuntu/wsl
