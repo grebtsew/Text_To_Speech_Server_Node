@@ -1,5 +1,5 @@
 # App
-requests==2.31.0
+requests==2.32.0
 pyttsx3==2.90
 pyfiglet==1.0.2
 gTTS==2.5.1
