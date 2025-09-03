@@ -1,4 +1,13 @@
 ----------------------------------
+Version: 0.0.2
+Date: 25-09-03
+Author: Grebtsew
+
+Added audio player to the server.
+Tested integration with live ci/cd stacks.
+
+----------------------------------
+----------------------------------
 Version: 0.0.1 
 Date: 24-04-16
 Author: Grebtsew

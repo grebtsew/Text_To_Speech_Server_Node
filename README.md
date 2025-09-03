@@ -71,7 +71,7 @@ data = {
 
 # Release Notes
 
-The current release is version `0.0.1` see more at [RELEASE_NOTES](./RELEASE_NOTES.txt).
+The current release is version `0.0.2` see more at [RELEASE_NOTES](./RELEASE_NOTES.txt).
 
 # Logging
 
