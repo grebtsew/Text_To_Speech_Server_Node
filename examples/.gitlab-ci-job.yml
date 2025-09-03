@@ -1,0 +1,18 @@
+stages:
+  - tts
+
+send_tts_request:
+  stage: tts
+
+  script:
+    - |
+      curl -X POST http://X.X.X.X:8000/play \
+        -H "Content-Type: application/json" \
+        -d '{
+              "api_rate": 150,
+              "api_volume": 0.7,
+              "api_text": "TEXT_TO_READ",
+              "api_voice": "english",
+              "api_tune": false,
+              "password": "password-1"
+            }' || echo "⚠️ Kunde inte kontakta servern, men ignorerar fel"

@@ -1,8 +1,10 @@
 # App
-requests==2.31.0
+requests==2.32.5
 pyttsx3==2.90
-pyfiglet==1.0.2
+pyfiglet==1.0.4
 gTTS==2.5.1
+pygame==2.6.1
+jsonschema==4.25.1
 
 # ci/cd
 pytest==8.1.1

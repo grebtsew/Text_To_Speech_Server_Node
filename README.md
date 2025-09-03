@@ -57,13 +57,14 @@ Change ports and address in `./src/server.py`.
 
 
 # Example data to send
-See test_client.py
+See test_client.py. For more detailed information of the json format used, checkout the `template/template.json` file!
 ```
 data = {
         'api_rate':150, # set speed of voice
         'api_volume':0.7, # set volume
         'api_text':"TEXT_TO_READ", # actual text
         'api_voice': english ,# set voice id
+        'api_tune': False, # link to audio to play
         'password': "password-1" # password REQUIRED
         } 
 ```

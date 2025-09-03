@@ -4,6 +4,8 @@ from multiprocessing import Queue
 import time
 from textwrap import wrap
 import logging
+import pygame
+import os
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -102,6 +104,21 @@ class speaker:
         if self.stopped:
             self.converter.stop()
 
+    def play_mp3(self, path: str, volume: float):
+        """Spelar upp en MP3-fil med pygame."""
+        pygame.mixer.init()
+        pygame.mixer.music.load(path)
+        pygame.mixer.music.set_volume(volume)
+        pygame.mixer.music.play()
+
+        print(f"Spelar: {path} med volym {volume*100:.0f}%")
+
+        while pygame.mixer.music.get_busy():
+            time.sleep(0.1)
+
+        pygame.mixer.music.stop()
+        pygame.mixer.quit()
+
     def run(self):
         while True:
             while not self.queue.empty():
@@ -123,7 +140,15 @@ class speaker:
 
                     logger.info(f"{self.name} > {data['api_text']}")
 
-                    self.converter.say(data["api_text"])
-                    self.converter.runAndWait()
+                    if "api_tune" in data and os.path.isfile(data["api_text"]):
+                        # Perform playing music here
+                        try:
+                            self.play_mp3(data["api_text"], float(data["api_volume"]))
+                        except Exception as e:
+                            pass
+                    else:
+                        # Perform speak command here
+                        self.converter.say(data["api_text"])
+                        self.converter.runAndWait()
 
             time.sleep(1)  # sleep one second

@@ -29,4 +29,4 @@ RUN pip3 install -r /requirements.txt
 # Copy project
 COPY . /home/app/
 
-CMD [ "python3", "/home/app/main.py" ]
+CMD [ "python3", "./src/main.py" ]

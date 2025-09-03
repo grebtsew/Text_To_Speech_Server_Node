@@ -12,5 +12,5 @@ services:
     tty: true
     ports:
     - 8000:8000
-    devices: 
-    - /dev/snd:/dev/snd # ubuntu/wsl
+    #devices: 
+    #- /dev/snd:/dev/snd # ubuntu/wsl

@@ -9,5 +9,9 @@ class console(Thread):
 
     def run(self):
         while True:
-            s = input()
-            self.speaker.say(s)
+            try:
+                s = input()
+                self.speaker.say(s)
+            except Exception as e:
+                print("Crash caused by user.")
+                return

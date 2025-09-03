@@ -35,6 +35,7 @@ while True:
         "api_volume": random.uniform(0.5, 0.7),
         "api_voice": voices[random_index].id,
         "api_text": str(i),
+        "api_tune": False,
         "password": "password-1",
     }
 
