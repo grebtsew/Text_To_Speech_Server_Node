@@ -102,7 +102,7 @@ class server(Thread):
         self.speaker = speaker
 
     def run(self):
-        server_address = ("localhost", self.PORT)
+        server_address = ("0.0.0.0", self.PORT)
         httpd = HTTPServer(server_address, partial(S, self.speaker))
         try:
             httpd.serve_forever()
